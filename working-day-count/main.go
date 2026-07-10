@@ -58,13 +58,13 @@ func getWorkingDayCount(N int, relations [][]int) int {
 			return
 		}
 
-		visited = visited | 1<<p.Val - 1
+		visited = visited | (1 << (p.Val - 1))
 		if len(p.Children) == 0 {
 			return
 		}
 
-		for k := 0; k < len(p.Childrens); k++ {
-			pk := p.Childrens[k]
+		for k := 0; k < len(p.Children); k++ {
+			pk := p.Children[k]
 			// check if already visited
 			if 1<<(pk.Val-1)&state > 0 {
 				maxHeight = -1
@@ -83,7 +83,6 @@ func getWorkingDayCount(N int, relations [][]int) int {
 
 	for i := 0; i < N; i++ {
 		if len(nodes[i].Parents) == 0 {
-			nodes[i].Val = 1
 			dfs(nodes[i], 1<<i)
 			if maxHeight < 0 {
 				return -1
@@ -92,7 +91,7 @@ func getWorkingDayCount(N int, relations [][]int) int {
 	}
 
 	// step3 check all visited and return maxHeight
-	if visisted+1 < 1<<N {
+	if visited+1 < 1<<N {
 		return -1
 	}
 
