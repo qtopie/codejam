@@ -55,7 +55,56 @@ package main
 // 	1 <= s1.length <= 30
 // 	s1 and s2 consist of lowercase English letters.
 //
+// 找切割点
+//
 
 func isScramble(s1 string, s2 string) bool {
+	n := len(s1)
+	if n != len(s2) {
+		return false
+	}
+	if s1 == s2 {
+		return true
+	}
 
+	// dp[k][i][j] 表示 len=k, s1[i...], s2[j...]
+	dp := make([][][]bool, n+1)
+	for k := 0; k <= n; k++ {
+		dp[k] = make([][]bool, n)
+		for i := 0; i < n; i++ {
+			dp[k][i] = make([]bool, n)
+		}
+	}
+
+	// 1. 初始化长度为 1 的情况
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
+			dp[1][i][j] = (s1[i] == s2[j])
+		}
+	}
+
+	// 2. 枚举子串长度 k (从 2 到 n)
+	for k := 2; k <= n; k++ {
+		// 枚举 s1 的起点 i
+		for i := 0; i <= n-k; i++ {
+			// 枚举 s2 的起点 j
+			for j := 0; j <= n-k; j++ {
+				// 枚举分割点长度 p (1 <= p < k)
+				for p := 1; p < k; p++ {
+					// 情况 A: 不交换
+					if dp[p][i][j] && dp[k-p][i+p][j+p] {
+						dp[k][i][j] = true
+						break
+					}
+					// 情况 B: 交换
+					if dp[p][i][j+k-p] && dp[k-p][i+p][j] {
+						dp[k][i][j] = true
+						break
+					}
+				}
+			}
+		}
+	}
+
+	return dp[n][0][0]
 }

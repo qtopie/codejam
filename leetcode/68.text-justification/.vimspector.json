@@ -1,0 +1,45 @@
+{
+  "adapters": {
+    "delve-local": {
+      "variables": {
+        "port": "${unusedLocalPort}",
+        "listenOn": "127.0.0.1",
+        "dlvFlags": ""
+      },
+      "command": [
+        "/Users/calvin.y/go/bin/dlv",
+        "dap",
+        "--listen",
+        "${listenOn}:${port}",
+        "*${dlvFlags}"
+      ],
+      "tty": true,
+      "port": "${port}"
+    }
+  },
+  "configurations": {
+    "TestDebug": {
+      "adapter": "delve-local",
+      "filetypes": [ "go" ],
+      "configuration": {
+        "request": "launch",
+        "mode": "test",
+        "program": "${workspaceRoot}",
+        "dlvCwd": "${workspaceRoot}",
+        "args": [ "-test.run", "TestDebug" ]
+      },
+      "default": true
+    },
+    "Debug solution_test.go": {
+      "adapter": "delve-local",
+      "filetypes": [ "go" ],
+      "configuration": {
+        "request": "launch",
+        "mode": "test",
+        "program": "${workspaceRoot}",
+        "dlvCwd": "${workspaceRoot}",
+        "args": [ "-test.run", "TestSamples" ]
+      }
+    }
+  }
+}
