@@ -3,3 +3,6 @@ node_modules/
 **/__debug_bin*
 *.swp
 Problems
+
+# Agent workspace dynamic task board
+.agents/TASK.md
