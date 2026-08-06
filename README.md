@@ -10,17 +10,16 @@
 | [`leetcode/`](leetcode/) | LeetCode 题解（前 200 题） |
 | [`310.minimum-height-trees/`](310.minimum-height-trees/) | LeetCode 310. Minimum Height Trees 题解 |
 
-### 算法专题
+### 算法知识库（[经典算法知识纲要](https://qtopie.github.io/notes/codejam/classic-algorithms/)）
 | 目录 | 说明 |
 |------|------|
-| [`backtracking/`](backtracking/) | 回溯搜索、剪枝、状态空间树 |
-| [`divide-and-conquer/`](divide-and-conquer/) | 分治（归并排序 / 快速排序） |
-| [`dynamic-programming/`](dynamic-programming/) | 动态规划（背包、LCS、爬楼梯等） |
-| [`monotonic-stack/`](monotonic-stack/) | 单调栈 |
-| [`prefix-sum/`](prefix-sum/) | 前缀和 |
-| [`sliding-window/`](sliding-window/) | 滑动窗口 |
-| [`sorting/`](sorting/) | 排序算法（堆排序等） |
-| [`tree/`](tree/) | 树的遍历、B/B+ 树笔记 |
+| [`algorithms/core-concepts/`](algorithms/core-concepts/) | 复杂度分析、主定理、正确性证明 |
+| [`algorithms/data-structures/`](algorithms/data-structures/) | 数组/链表、栈/队列、哈希、树/堆、并查集 |
+| [`algorithms/paradigms/`](algorithms/paradigms/) | 分治、DP、贪心、回溯、滑动窗口、前缀和、单调栈、排序 |
+| [`algorithms/graph/`](algorithms/graph/) | 图论：最短路、MST、拓扑、流与匹配 |
+| [`algorithms/string/`](algorithms/string/) | 字符串：KMP、Trie、后缀结构 |
+| [`algorithms/math/`](algorithms/math/) | 数论与计算几何 |
+| [`algorithms/dp-optimization/`](algorithms/dp-optimization/) | DP 优化（进阶） |
 | [`joy-of-coding/`](joy-of-coding/) | 编程之美练习（位运算 / 链表 / 数据结构 / 剑指 Offer） |
 
 ### 文档

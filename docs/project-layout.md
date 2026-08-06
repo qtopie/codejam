@@ -1,6 +1,14 @@
 # Project Layout & Module Boundaries
 
 ## Directory Structure
+- `algorithms/`: 经典算法知识库（按主题组织）
+  - `core-concepts/`: 复杂度分析、主定理、正确性证明
+  - `data-structures/`: 树、堆、哈希、并查集等
+  - `paradigms/`: 分治、DP、贪心、回溯、滑动窗口、前缀和、单调栈、排序
+  - `graph/`: 图论（最短路、MST、拓扑、流）
+  - `string/`: 字符串算法
+  - `math/`: 数论与计算几何
+  - `dp-optimization/`: DP 优化（进阶）
 - `specs/`: Single Source of Truth (SSOT) 规范与契约
 - `harness/`: Harness 评估与测试夹具工程
   - `harness/fixtures/`: 自动化测试用例静态数据与 Mock 存根
