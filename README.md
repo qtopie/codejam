@@ -26,6 +26,7 @@
 | 文件 | 说明 |
 |------|------|
 | [`docs/binary-search.md`](docs/binary-search.md) | LeetCode 前 200 题 Binary Search 题单 |
+| [`docs/linked-list.md`](docs/linked-list.md) | LeetCode 经典 Linked List 题单与核心解题技巧总结 |
 | [`docs/system-design.md`](docs/system-design.md) | 系统设计 |
 | [`docs/project-layout.md`](docs/project-layout.md) | 项目结构规范 |
 | [`docs/references/code-conventions.md`](docs/references/code-conventions.md) | Go 编码规范 |
