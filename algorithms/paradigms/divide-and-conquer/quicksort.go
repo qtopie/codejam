@@ -17,11 +17,12 @@ func partition(nums []int, l, r int) int {
 
 	// split into two parts until cross over
 	for {
-		// the left part < pivot
-		for ; i < j && nums[i] <= pivot; i++ {
+		// set not equal to make it balance
+		// the left part <= pivot
+		for ; i <= r && nums[i] < pivot; i++ {
 		}
-		// the right part is >= pivot, let i <=j for cross over, since i++ for last run
-		for ; i < j && nums[j] >= pivot; j-- {
+		// the right part is > pivot, let i <=j for cross over, since i++ for last run
+		for ; j >= l+1 && nums[j] > pivot; j-- {
 		}
 
 		if i >= j {
