@@ -4,9 +4,10 @@
 
 promising, non-promising 
 
-1. DFS searching, and constructing state-space tree
-2. promising? yes, add option to component; no, restore and back one more level up
-3. find results
+1. **Search Problem Framework**: 状态三要素（`results` 结果集、`state` 当前路径状态、`nextState` 可行后继推演）
+2. DFS searching, and constructing state-space tree
+3. promising? yes, add option to component; no, restore and back one more level up
+4. find results
 
 Pseudocode
 

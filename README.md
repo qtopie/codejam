@@ -18,15 +18,15 @@
 | [`algorithms/paradigms/`](algorithms/paradigms/) | 分治、DP、贪心、回溯、滑动窗口、前缀和、单调栈、排序 |
 | [`algorithms/graph/`](algorithms/graph/) | 图论：最短路、MST、拓扑、流与匹配 |
 | [`algorithms/string/`](algorithms/string/) | 字符串：KMP、Trie、后缀结构 |
-| [`algorithms/math/`](algorithms/math/) | 数论与计算几何 |
+| [`algorithms/math/`](algorithms/math/) | 数论、位运算与计算几何 |
 | [`algorithms/dp-optimization/`](algorithms/dp-optimization/) | DP 优化（进阶） |
-| [`joy-of-coding/`](joy-of-coding/) | 编程之美练习（位运算 / 链表 / 数据结构 / 剑指 Offer） |
 
 ### 文档
 | 文件 | 说明 |
 |------|------|
 | [`docs/binary-search.md`](docs/binary-search.md) | LeetCode 前 200 题 Binary Search 题单 |
 | [`docs/linked-list.md`](docs/linked-list.md) | LeetCode 经典 Linked List 题单与核心解题技巧总结 |
+| [`docs/be-a-good-engineer.md`](docs/be-a-good-engineer.md) | 软件工程师能力模型与面试准备脉络 |
 | [`docs/system-design.md`](docs/system-design.md) | 系统设计 |
 | [`docs/project-layout.md`](docs/project-layout.md) | 项目结构规范 |
 | [`docs/references/code-conventions.md`](docs/references/code-conventions.md) | Go 编码规范 |

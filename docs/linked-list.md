@@ -134,6 +134,7 @@ func reverseBetween(head *ListNode, left int, right int) *ListNode {
     }
     cur := pre.Next
     for i := 0; i < right-left; i++ {
+        // 把nxt插入过来到prev和cur之间
         nxt := cur.Next
         cur.Next = nxt.Next
         nxt.Next = pre.Next
