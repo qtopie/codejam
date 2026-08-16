@@ -7,17 +7,17 @@
 ## 📌 内容架构与索引
 
 ```mermaid
-graph TD
-    CodeJam[CodeJam 工程] --> Algorithms[algorithms/ 经典算法知识库]
-    CodeJam --> LeetCode[leetcode/ 题解实战仓]
-    CodeJam --> Docs[docs/ 专题总结与速查]
-    CodeJam --> Harness[specs/ & harness/ 工程化门禁]
+flowchart TD
+    CodeJam["CodeJam 工程"] --> Algorithms["algorithms/ 经典算法知识库"]
+    CodeJam --> LeetCode["leetcode/ 题解实战仓"]
+    CodeJam --> Docs["docs/ 专题总结与速查"]
+    CodeJam --> Harness["specs/ & harness/ 工程化门禁"]
 
-    Algorithms --> DataStructures[data-structures/ 数据结构]
-    Algorithms --> Paradigms[paradigms/ 核心范式]
-    Algorithms --> MathBits[math/ 数论与位运算]
-    Algorithms --> Strings[string/ 字符串]
-    Algorithms --> Graphs[graph/ 图论]
+    Algorithms --> DataStructures["data-structures/ 数据结构"]
+    Algorithms --> Paradigms["paradigms/ 核心范式"]
+    Algorithms --> MathBits["math/ 数论与位运算"]
+    Algorithms --> Strings["string/ 字符串"]
+    Algorithms --> Graphs["graph/ 图论"]
 ```
 
 ### 1. 经典算法知识库 ([纲要](https://qtopie.github.io/notes/codejam/classic-algorithms/))
@@ -46,9 +46,10 @@ graph TD
 
 | 分类 | 文档链接 | 描述 |
 | :--- | :--- | :--- |
+| **专题总结** | [`docs/tree.md`](docs/tree.md) | **二叉树与搜索树核心解题方法论**（分治汇总、前序上下文、BST中序单调、树构造、BFS） |
 | **专题总结** | [`docs/linked-list.md`](docs/linked-list.md) | 链表核心题型与技巧总结（双指针、反转、虚拟头节点、LRU） |
 | **专题总结** | [`docs/binary-search.md`](docs/binary-search.md) | LeetCode 前 200 题二分查找题单与边界模板 |
-| **语言速查** | [`docs/references/java-cheatsheet.md`](docs/references/java-cheatsheet.md) | **Java 刷题语法与常用 API 极速速查表**（数据结构、排序、避坑清单） |
+| **语言速查** | [`docs/references/java-cheatsheet.md`](docs/references/java-cheatsheet.md) | **Java 刷题语法与常用 API 极速速查表**（基础类型、数组/字符串、集合/堆栈/队列、位运算与状压、排序、避坑清单） |
 | **语言规范** | [`docs/references/code-conventions.md`](docs/references/code-conventions.md) | Go 编码规范与错误处理准则 |
 | **工程成长** | [`docs/be-a-good-engineer.md`](docs/be-a-good-engineer.md) | 软件工程师能力模型（Mindmap）与面试准备路线 |
 | **系统设计** | [`docs/system-design.md`](docs/system-design.md) | 系统设计思考与方法论 |

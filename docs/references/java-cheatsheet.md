@@ -16,8 +16,9 @@
 9. [哈希表与有序表 (HashMap & TreeMap)](#9-哈希表与有序表-hashmap--treemap)
 10. [哈希集合与有序集合 (HashSet & TreeSet)](#10-哈希集合与有序集合-hashset--treeset)
 11. [排序与自定义比较器 (Sort & Comparator)](#11-排序与自定义比较器-sort--comparator)
-12. [数学、位运算与常用技巧](#12-数学位运算与常用技巧)
-13. [刷题必背避坑清单 (Gotchas)](#13-刷题必背避坑清单-gotchas)
+12. [位运算核心技巧与 API (Bit Manipulation)](#12-位运算核心技巧与-api-bit-manipulation)
+13. [常用数学与算法技巧 (Math & Algo Tricks)](#13-常用数学与算法技巧-math--algo-tricks)
+14. [刷题必背避坑清单 (Gotchas)](#14-刷题必背避坑清单-gotchas)
 
 ---
 
@@ -339,7 +340,135 @@ list.sort((a, b) -> Integer.compare(b, a)); // 降序
 
 ---
 
-## 12. 数学、位运算与常用技巧
+## 12. 位运算核心技巧与 API (Bit Manipulation)
+
+### 1. 基础运算符对照表
+| 运算符 | 名称 | 规则 / 语法 | 示例 |
+| :--- | :--- | :--- | :--- |
+| `&` | 按位与 (AND) | 两位均为 1 则为 1，否则为 0 | `5 & 3` $\to$ `101 & 011 = 001 (1)` |
+| `\|` | 按位或 (OR) | 两位只要有 1 则为 1，全 0 为 0 | `5 \| 3` $\to$ `101 \| 011 = 111 (7)` |
+| `^` | 按位异或 (XOR) | 相同为 0，不同为 1（无进位加法） | `5 ^ 3` $\to$ `101 ^ 011 = 110 (6)` |
+| `~` | 按位取反 (NOT) | 0 变 1，1 变 0（`~x = -x - 1`） | `~5` $\to$ `-6` |
+| `<<` | 左移 | 各二进制位左移，低位补 0（相当于乘 $2^k$） | `3 << 2` $\to$ `12` |
+| `>>` | 算术右移 | 各二进制位右移，**高位补符号位**（负数补 1） | `-8 >> 2` $\to$ `-2` |
+| `>>>` | 无符号右移 | 各二进制位右移，**高位一律补 0**（忽略符号位） | `-8 >>> 2` $\to$ `1073741822` |
+
+---
+
+### 2. 单 bit 基础操控（$k$ 从 0 开始计数，从右至左）
+
+> 💡 **位索引规则**：$k$ 从 **0** 开始计数（即 0-indexed，从右向左），$k = 0$ 表示二进制的**最低位（第 0 位，即 $2^0$ 对应的个位）**。
+
+#### 原理解析：`(n >> k) & 1`
+1. **右移对齐**：`n >> k` 将目标第 $k$ 位移动到最右端的第 0 位。
+2. **掩码提取**：`& 1`（即 `& 000...0001`）将左边所有高位清零，仅保留最右侧的值，得到 `0` 或 `1`。
+
+**示例**（以 $n = 6$，二进制 `0b110` 为例）：
+- $k = 0$（第 0 位）：`6 >> 0 = 0b110`，`0b110 & 1 = 0`（第 0 位为 0）
+- $k = 1$（第 1 位）：`6 >> 1 = 0b011`，`0b011 & 1 = 1`（第 1 位为 1）
+- $k = 2$（第 2 位）：`6 >> 2 = 0b001`，`0b001 & 1 = 1`（第 2 位为 1）
+
+```java
+// 1. 获取第 k 位 (返回 0 或 1，k 从 0 开始)
+int bit = (n >> k) & 1;
+boolean isOne = (n & (1 << k)) != 0; // 等价判定：第 k 位是否为 1
+
+// 2. 将第 k 位置为 1 (Set Bit)
+n |= (1 << k);
+
+// 3. 将第 k 位置为 0 (Clear Bit)
+n &= ~(1 << k);
+
+// 4. 将第 k 位取反 (Toggle Bit)
+n ^= (1 << k);
+```
+
+---
+
+### 3. 经典位运算技巧与神技 (Classic Bit Tricks)
+```java
+// 1. 消除二进制最低位的 1 (Brian Kernighan 算法)
+// 原理：n - 1 会将最低位的 1 变为 0，其后的 0 全部变为 1，按位与后消除该位 1
+n = n & (n - 1);
+
+// 判定是否为 2 的幂次方 (Power of Two)
+boolean isPowerOfTwo = n > 0 && (n & (n - 1)) == 0;
+
+// 判定是否为 4 的幂次方
+boolean isPowerOfFour = n > 0 && (n & (n - 1)) == 0 && (n & 0xaaaaaaaa) == 0;
+
+// 2. 提取最低位的 1 (lowbit 运算 / 树状数组核心)
+// 原理：利用计算机补码特性 -n = ~n + 1
+int lowbit = n & (-n); // 6 (0110) & -6 (1010) -> 2 (0010)
+
+// 3. 异或运算核心性质 (Single Number 题型核心)
+// 性质：a ^ a = 0; a ^ 0 = a; 且满足交换律与结合律
+int single = 0;
+for (int num : nums) single ^= num; // 数组中唯一出现一次的数
+
+// 4. 不用临时变量交换两数
+a ^= b;
+b ^= a;
+a ^= b;
+```
+
+---
+
+### 4. `Integer` 与 `Long` 内置高性能位操作 API
+> 💡 源码基于底层的查表法或 CPU 原语指令，性能极高。
+
+```java
+int n = 0b00101100; // 44
+
+// 1. 计算二进制中 1 的个数 (Hamming Weight / 汉明重量)
+int count = Integer.bitCount(n); // 3
+
+// 2. 前导 0 与后导 0 的个数
+int lz = Integer.numberOfLeadingZeros(n);  // 32 位整型高位连续 0 的个数
+int tz = Integer.numberOfTrailingZeros(n); // 低位连续 0 的个数 (即 lowbit 对应的 2 的幂指数)
+
+// 3. 保留最高位 / 最低位的 1 (其余位全置 0)
+int highest = Integer.highestOneBit(n); // 32 (0b00100000)
+int lowest = Integer.lowestOneBit(n);   // 4  (0b00000100)
+
+// 4. 进制转换与调试
+String binStr = Integer.toBinaryString(n); // "101100" (无前导零)
+int parsed = Integer.parseInt("101100", 2); // 44
+```
+
+---
+
+### 5. 集合与状压 DP 常用操作 (Bitmask & State Compression)
+
+在状压 DP 或回溯中，通常用一个 `int` 的二进制位表示一个元素大小不超过 30 的集合（第 $i$ 位为 1 表示集合包含元素 $i$）：
+
+```java
+// 全集 (包含 0 ~ n-1 共 n 个元素)
+int allSet = (1 << n) - 1;
+
+// 空集
+int emptySet = 0;
+
+// 集合基本运算
+int union = maskA | maskB;           // 并集 A ∪ B
+int intersect = maskA & maskB;       // 交集 A ∩ B
+int diff = maskA & (~maskB);         // 差集 A \ B
+int symDiff = maskA ^ maskB;         // 对称差 (A ∪ B) \ (A ∩ B)
+int complement = allSet ^ maskA;     // 补集 ∁ A
+
+// 判断元素 i 是否在集合中
+boolean contains = ((mask >> i) & 1) == 1;
+
+// 子集遍历核心模板 (Submask Enumeration)
+// 高效枚举 mask 的所有非空子集（时间复杂度：所有 mask 子集枚举之和为 O(3^n)）
+for (int sub = mask; sub > 0; sub = (sub - 1) & mask) {
+    // 处理子集 sub
+}
+```
+
+---
+
+## 13. 常用数学与算法技巧 (Math & Algo Tricks)
 
 ### `Math` 常用函数
 ```java
@@ -348,29 +477,9 @@ Math.min(a, b);
 Math.abs(x);
 Math.pow(base, exp); // 返回 double
 Math.sqrt(x);        // 返回 double
-Math.ceil(x);        // 向上取整
-Math.floor(x);       // 向下取整
-Math.round(x);       // 四舍五入
-```
-
-### 常用位运算
-```java
-// 消除最低位 1 (Brian Kernighan)
-n = n & (n - 1);
-
-// 获取最低位 1 (lowbit)
-int lowbit = n & (-n);
-
-// 判断奇偶 (位运算优先级低，必须加括号！)
-boolean isOdd = (n & 1) == 1;
-
-// 乘除 2 的幂
-int mul2 = n << 1;
-int div2 = n >> 1; // 带符号右移
-int udiv2 = n >>> 1; // 无符号右移 (高位补 0)
-
-// 二进制中 1 的个数
-int cnt = Integer.bitCount(n);
+Math.ceil(x);        // 向上取整 (double)
+Math.floor(x);       // 向下取整 (double)
+Math.round(x);       // 四舍五入 (long/int)
 ```
 
 ### 二分查找标准中点防溢出
@@ -384,18 +493,30 @@ int MOD = 1_000_000_007;
 int ans = (int) (((long) a % MOD + MOD) % MOD);
 ```
 
+### 最大公约数 (GCD) 辗转相除法
+```java
+int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+```
+
 ---
 
-## 13. 刷题必背避坑清单 (Gotchas)
+## 14. 刷题必背避坑清单 (Gotchas)
 
 1. **对象比较必须用 `.equals()`**：
    - 对于 `Integer`, `String`，使用 `==` 会比较对象内存地址（`Integer` 仅在 `[-128, 127]` 命中缓存时 `==` 为 true，超出即 false）。
-2. **回溯算法的结果保存必须深拷贝**：
+2. **位运算优先级极低（天坑！）**：
+   - `if (n & 1 == 0)` 会被编译器解析成 `if (n & (1 == 0))`，直接类型不兼容报错！
+   - `int a = 1 << 2 + 1` 会被解析成 `1 << 3 = 8`，而不是 `4 + 1 = 5`！
+   - **规则**：涉及位运算一律加括号：`if ((n & 1) == 0)`、`int a = (1 << 2) + 1`。
+3. **64 位移位必须加 `L`**：
+   - 对 `long` 进行超过 31 位的左移时，必须写 `1L << k`。如果写 `1 << 40`，字面量默认按 32 位 `int` 计算（实际只左移了 `40 % 32 = 8` 位）。
+4. **回溯算法的结果保存必须深拷贝**：
    - `ans.add(new ArrayList<>(path))` 而不是 `ans.add(path)`。
-3. **位运算优先级极低**：
-   - `if (n & 1 == 0)` 会被解析成 `if (n & (1 == 0))` 导致编译失败。必须写 `if ((n & 1) == 0)`。
-4. **二分与排序防溢出**：
+5. **二分与排序防溢出**：
    - 中点计算写 `left + (right - left) / 2`。
    - 自定义 Comparator 用 `Integer.compare(a, b)` 替代 `a - b`。
-5. **字符串反转与修改**：
+6. **字符串频繁拼接与修改**：
    - 不要在循环里用 `s += "a"`（每次创建新 String，复杂度飙升至 $O(n^2)$），请用 `StringBuilder`。
+

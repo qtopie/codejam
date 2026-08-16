@@ -15,5 +15,6 @@
 | [`linked-list/`](linked-list/) | 单链表反转、O(1) 节点删除等经典实现 |
 | [`heap/`](heap/) | 最小堆 (IntHeap)、优先队列 (PriorityQueue) |
 | [`stack/`](stack/) | 栈结构与压入弹出序列校验 |
+| [树与搜索树笔记](../../docs/tree.md) | 二叉树与搜索树核心解题方法论（分治、前序上下文传递、中序单调性、树构造、BFS 状态管理） |
 | [链表笔记](../../docs/linked-list.md) | 链表核心题型与技巧：双指针、反转、虚拟头节点、LRU（基于 LeetCode 经典题） |
 | [栈笔记](../../leetcode/docs/stack.md) | 栈与单调栈：括号匹配、表达式求值、辅助栈（基于 LeetCode 经典题） |
