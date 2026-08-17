@@ -1,5 +1,12 @@
 package prefixsum
 
+// TreeNode 二叉树节点（LeetCode 437 路径总和 III 使用）
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
 // https://leetcode.com/problems/path-sum-iii/
 func pathSum(root *TreeNode, targetSum int) int {
 	if root == nil {
@@ -26,7 +33,7 @@ func pathSum(root *TreeNode, targetSum int) int {
 		cnt += dfs(p.Right, currSum)
 
 		// restore
-		prefixSumMap[currMap]--
+		prefixSumMap[currSum]--
 
 		return cnt
 	}
