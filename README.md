@@ -47,6 +47,7 @@ flowchart TD
 | 分类 | 文档链接 | 描述 |
 | :--- | :--- | :--- |
 | **专题总结** | [`docs/tree.md`](docs/tree.md) | **二叉树与搜索树核心解题方法论**（分治汇总、前序上下文、BST中序单调、树构造、BFS） |
+| **专题总结** | [`docs/graph.md`](docs/graph.md) | **图论核心解题方法论**（网格 Flood Fill、深拷贝映射、带权路径搜索、拓扑排序/环检测、隐式图 BFS） |
 | **专题总结** | [`docs/linked-list.md`](docs/linked-list.md) | 链表核心题型与技巧总结（双指针、反转、虚拟头节点、LRU） |
 | **专题总结** | [`docs/binary-search.md`](docs/binary-search.md) | LeetCode 前 200 题二分查找题单与边界模板 |
 | **语言速查** | [`docs/references/java-cheatsheet.md`](docs/references/java-cheatsheet.md) | **Java 刷题语法与常用 API 极速速查表**（基础类型、数组/字符串、集合/堆栈/队列、位运算与状压、排序、避坑清单） |
